@@ -1,22 +1,22 @@
 package com.mycompany.springframework.controller;
 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 @RequestMapping("/ch01")
-
-
+@Slf4j
 public class Ch01Controller {
-	@RequestMapping("")
-	public String index() {
-		log.info("index()실행1");
-		log.info("index()실행2");
-		log.info("index()실행3");
-		return "ch01/index";
+	//private static final Logger LOGGER = LoggerFactory.getLogger(Ch01Controller.class);
+	//상수정의 slf4j 를 쓰지않을 때
+	
+	@RequestMapping("/content")
+	public String content() {
+		log.info("content()실행"); 
+		return "ch01/content";
 	}
 }
-

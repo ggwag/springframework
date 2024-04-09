@@ -1,5 +1,5 @@
-<%-- page 지시자: page WAS에서 JSP 해석하는 방법을 기술 --%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,23 +19,20 @@
 	
 	<body>
 		<!-- vh-100 =  view port의 100% -->
-		<div class = "d-flex flex-column vh-100">
-		
-			<%-- include 지시자는 소스 복사 개념 --%> 
+		<div class = "d-flex flex-column vh-100"> 
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 			<div class="flex-grow-1 m-2">
 				<div class="d-flex row ">
-					<div class ="col-md-4">					
-					<%-- include 액션은 외부에서 실행하고 결과만 삽입 --%>
-					<jsp:include page="/WEB-INF/views/common/menu.jsp"></jsp:include>
+					<div class ="col-md-4">
+					<%@ include file="/WEB-INF/views/common/menu.jsp" %>
 					</div>
 					
 					<div class ="col-md-8">
 						<!--  #################################### -->
 						<div class="card">
-							<div class="card-header">home</div>
+							<div class="card-header">content</div>
 							<div class="card-body">
-								content							
+															
 							</div>
 						</div>
 						<!--  #################################### -->
