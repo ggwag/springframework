@@ -1,4 +1,4 @@
-package com.mycompany.springframework.bao;
+package com.mycompany.springframework.dao;
 
 import org.springframework.stereotype.Repository;
 
