@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mycompany.springframework.dao.mybatis.Ch13BoardDao">
+
+	<insert id="insert" parameterType="Ch13Board">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			select seq_bno.nextval from dual <!-- 시퀀스의 다음 번호(값)가 뭐냐 라는 뜻 -->
+		</selectKey>
+		<!-- insert SQL문 작성-->
+		insert into board(
+		bno, btitle, bcontent, bdate, mid, 
+		bhitcount, battachoname, battachtype, battachdata
+		)
+		<!-- DTO에서 데이터를 얻어서 값으로 제공 할 것임 -->
+		values(
+			#{bno}, #{btitle}, #{bcontent}, sysdate, #{mid}, 0,
+			#{battachoname},
+			#{battachtype},
+			#{battachdata} <!-- VARCHAR 등 안붙이고 하기 -->
+		)
+	</insert>
+	
+	<select id="count" resultType = "int">
+		select count(*) from board
+	</select>
+	
+	<select id="selectByPage" parameterType="Ch13Pager" resultType="Ch13Board">
+	<![CDATA[
+			select rnum, bno, btitle, bcontent, mid, bdate, bhitcount
+			from (  
+			    select rownum as rnum, bno, btitle, bcontent, mid, bdate, bhitcount
+			    from (
+			        select bno, btitle, bcontent, mid, bdate, bhitcount
+			        from board
+			        order by bno desc
+			        
+			    )
+			    where rownum <= #{endRowNo}
+			)
+			where rnum >= #{startRowNo}
+			]]>
+	</select>
+	
+	<select id="selectByBno" parameterType="int" resultType="Ch13Board">
+		select bno, btitle, bcontent, mid, bdate, bhitcount, battachoname, battachtype
+		from board
+		where bno=#{bno}
+	</select>
+			
+	<select id="selectAttachData" parameterType="int" resultType="Ch13Board">
+		select battachdata
+		from board
+		where bno=#{bno}
+	</select>
+	
+	<update id="update" parameterType="Ch13Board">
+			update board set
+				btitle=#{btitle},
+				bcontent=#{bcontent}
+		
+		<if test="battachoname != null">
+			,
+			battachoname=#{battachoname},
+			battachtype=#{battachtype},
+			battachdata=#{battachdata}
+		</if>
+		where bno=#{bno}
+	</update>
+	
+	<delete id="deleteByBno" parameterType="int">
+		delete 
+		from board
+		where bno=#{bno}
+	</delete>
+</mapper>

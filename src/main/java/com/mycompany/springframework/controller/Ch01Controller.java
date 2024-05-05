@@ -16,10 +16,10 @@ public class Ch01Controller {
 	//상수정의 slf4j 를 쓰지않을 때
 	
 	@RequestMapping("/content")
-	public String content(String chNum, Model model) {
+	public String content(Model model) {
 		log.info("content()실행");
 		
-		model.addAttribute("chNum", chNum);
+		model.addAttribute("chNum", "ch01");
 		return "ch01/content";
 	}
 }

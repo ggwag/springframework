@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/> <!-- 값을 제공하지 않으면 null -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/> <!-- DTO필드이름 자동매핑 -->
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.mycompany.springframework.dto.Ch13Board" alias="Ch13Board"/>
+		<typeAlias type="com.mycompany.springframework.dto.Ch13Pager" alias="Ch13Pager"/>
+		<typeAlias type="com.mycompany.springframework.dto.Ch15Account" alias="Ch15Account"/>
+		<typeAlias type="com.mycompany.springframework.dto.Ch17Member" alias="Ch17Member"/>
+	</typeAliases>
+</configuration>
